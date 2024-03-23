@@ -11,6 +11,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="body-wrapper">
+      <div class="navbar">
+        <div><a href="/schools">schools</a></div>
+        <div><a href="/students">students</a></div>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
