@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/BlockLength
+RSpec.describe "Students Web Pages", type: :feature do
   before(:each) do
     @harvard = School.create!(
       name: "Harvard University",
@@ -76,31 +76,17 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
     )
   end
 
-  describe "User story #1:" do
-    describe "When I visit /schools" do
-      it "displays the name of each school in the system" do
-        visit "/schools"
+  describe "User story #3:" do
+    describe "When I visit /students" do
+      it "displays each student in the system" do
+        visit "/students"
 
         within "body" do
-          expect(page).to have_content("Harvard University")
-          expect(page).to have_content("Boulder, CO")
+          expect(page).to have_content("Aaron Aaronson")
+          expect(page).to have_content("19")
+          expect(page).to have_content("$50.00")
           expect(page).to have_content("yes")
-          expect(page).to have_content("12000")
           expect(page).to have_content("no")
-        end
-      end
-    end
-  end
-
-  describe "User story #2:" do
-    describe "When I visit /schools/:id" do
-      it "shows the school with that id and its attributes" do
-        visit "/schools/#{@harvard.id}"
-
-        within "body" do
-          expect(page).to have_content("Harvard University")
-          expect(page).to have_content("Cambridge, MA")
-          expect(page).to_not have_content("Party University")
         end
       end
     end

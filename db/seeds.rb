@@ -31,3 +31,51 @@ party = School.create!(
   abet_accredited: false,
   student_capacity: 100_000
 )
+aaron = harvard.students.create!(
+  name: "Aaron Aaronson",
+  age: 21,
+  account_balance: 0,
+  currently_enrolled: true
+)
+bill = harvard.students.create!(
+  name: "Bill Bobberson",
+  age: 19,
+  account_balance: -200,
+  currently_enrolled: true
+)
+chase = mit.students.create!(
+  name: "Chase McChase",
+  age: 25,
+  account_balance: 0,
+  currently_enrolled: false
+)
+dan = mit.students.create!(
+  name: "Daniel O'Daniel",
+  age: 35,
+  account_balance: 25_000,
+  currently_enrolled: true
+)
+evan = cu.students.create!(
+  name: "Evan Evanston",
+  age: 22,
+  account_balance: -2000,
+  currently_enrolled: true
+)
+frodo = cu.students.create!(
+  name: "Frodo Baggins",
+  age: 50,
+  account_balance: 200_000,
+  currently_enrolled: true
+)
+gilbert = party.students.create!(
+  name: "Gilbert Gottfried",
+  age: 67,
+  account_balance: 0,
+  currently_enrolled: false
+)
+henry = party.students.create!(
+  name: "Henry Benry",
+  age: 18,
+  account_balance: 50,
+  currently_enrolled: true
+)
