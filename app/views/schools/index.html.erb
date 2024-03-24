@@ -1,0 +1,16 @@
+<div class="data-display">
+  <div class="list-description">
+    list of schools in database
+  </div>
+
+  <div class="list">
+    <% @schools.each do |school| %>
+      <div class="list-item">
+        <div class="name"><%= school.name %></div>
+        <div class="location">Location: <span class="value-color"><%= school.location %></span></div>
+        <div class="accredited">ABET accredited: <span class=<%= school.abet_accredited ? "true" : "false" %>><%= school.abet_accredited ? "yes" : "no" %></span></div>
+        <div class="capacity">Student capacity: <span class="value-color"><%= school.student_capacity %></span></div>
+      </div>
+    <% end %>
+  </div>
+</div>

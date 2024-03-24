@@ -14,19 +14,21 @@ RSpec.describe "Schools Index Page", type: :feature do
       abet_accredited: true,
       student_capacity: 12_000
     )
-    @harvard = School.create!(
+    @cu = School.create!(
       name: "University of Colorado, Boulder",
       location: "Boulder, CO",
       abet_accredited: true,
       student_capacity: 38_000
     )
+    @party = School.create!(
+      name: "Party University",
+      location: "Tijuana, Mexico",
+      abet_accredited: false,
+      student_capacity: 100_000
+    )
   end
 
   describe "User story #1:" do
-    # For each parent table
-    # As a visitor
-    # When I visit '/parents'
-    # Then I see the name of each parent record in the system
     describe "When I visit /schools" do
       it "displays the name of each school in the system" do
         visit "/schools"
@@ -34,8 +36,9 @@ RSpec.describe "Schools Index Page", type: :feature do
         within "body" do
           expect(page).to have_content("Harvard University")
           expect(page).to have_content("Boulder, CO")
-          expect(page).to have_content("true")
+          expect(page).to have_content("yes")
           expect(page).to have_content("12000")
+          expect(page).to have_content("no")
         end
       end
     end
