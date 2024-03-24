@@ -94,6 +94,15 @@ body {
   margin-bottom: 4px;
 }
 
+.name > a {
+  color: black;
+  text-decoration: none;
+}
+
+.name > a:hover {
+  color: blue;
+}
+
 .location, .accredited, .capacity {
   margin-left: 8px;
   margin-top: 3px;

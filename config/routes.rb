@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   get "/", to: "index#index"
   get "/schools", to: "schools#index"
+  get "/schools/:id", to: "schools#show"
 end

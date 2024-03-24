@@ -43,4 +43,18 @@ RSpec.describe "Schools Index Page", type: :feature do
       end
     end
   end
+
+  describe "User story #2:" do
+    describe "When I visit /schools/:id" do
+      it "shows the school with that id and its attributes" do
+        visit "/schools/#{@harvard.id}"
+
+        within "body" do
+          expect(page).to have_content("Harvard University")
+          expect(page).to have_content("Cambridge, MA")
+          expect(page).to_not have_content("Party University")
+        end
+      end
+    end
+  end
 end

@@ -1,0 +1,13 @@
+<div class="data-display">
+  <div class="list-description">
+    Information about <%= @school.name %>:
+  </div>
+
+  <div class="list">
+    <div class="list-item">
+      <div class="location">Location: <span class="value-color"><%= @school.location %></span></div>
+      <div class="accredited">ABET accredited: <span class=<%= @school.abet_accredited ? "true" : "false" %>><%= @school.abet_accredited ? "yes" : "no" %></span></div>
+      <div class="capacity">Student capacity: <span class="value-color"><%= @school.student_capacity %></span></div>
+    </div>
+  </div>
+</div>
