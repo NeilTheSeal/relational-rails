@@ -103,7 +103,7 @@ body {
   color: blue;
 }
 
-.location, .accredited, .capacity {
+.location, .accredited, .capacity, .age, .enrolled, .balance {
   margin-left: 8px;
   margin-top: 3px;
 }
