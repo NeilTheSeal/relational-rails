@@ -5,9 +5,9 @@
 
   <div class="list">
     <div class="list-item">
-      <div class="age">Age: <span class="value-color"><%= @student.age %></span></div>
-      <div class="enrolled">Currently enrolled: <span class=<%= @student.currently_enrolled ? "true" : "false" %>><%= @student.currently_enrolled ? "yes" : "no" %></span></div>
-      <div class="balance">Account balance: <span class="value-color">$<%= sprintf('%.2f', @student.account_balance) %></span></div>
+      <div class="list-subitem">Age: <span class="value-color"><%= @student.age %></span></div>
+      <div class="list-subitem">Currently enrolled: <span class=<%= @student.currently_enrolled ? "true" : "false" %>><%= @student.currently_enrolled ? "yes" : "no" %></span></div>
+      <div class="list-subitem">Account balance: <span class="value-color">$<%= sprintf('%.2f', @student.account_balance) %></span></div>
     </div>
   </div>
 </div>

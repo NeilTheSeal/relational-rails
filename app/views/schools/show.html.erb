@@ -5,9 +5,11 @@
 
   <div class="list">
     <div class="list-item">
-      <div class="location">Location: <span class="value-color"><%= @school.location %></span></div>
-      <div class="accredited">ABET accredited: <span class=<%= @school.abet_accredited ? "true" : "false" %>><%= @school.abet_accredited ? "yes" : "no" %></span></div>
-      <div class="capacity">Student capacity: <span class="value-color"><%= @school.student_capacity %></span></div>
+      <div class="list-subitem">Location: <span class="value-color"><%= @school.location %></span></div>
+      <div class="list-subitem">ABET accredited: <span class=<%= @school.abet_accredited ? "true" : "false" %>><%= @school.abet_accredited ? "yes" : "no" %></span></div>
+      <div class="list-subitem">Student capacity: <span class="value-color"><%= @school.student_capacity %></span></div>
+      <div class="list-subitem"><%= @school.name %> has <span class="value-color"><%= @school.students.count %></span> students.</div>
+      <div class="list-subitem"><a class="students-link" href=<%= "/schools/#{@school.id}/students" %>>View <%= @school.name %>'s student list</a></div>
     </div>
   </div>
 </div>

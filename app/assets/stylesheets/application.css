@@ -103,9 +103,13 @@ body {
   color: blue;
 }
 
-.location, .accredited, .capacity, .age, .enrolled, .balance {
+.list-subitem {
   margin-left: 8px;
   margin-top: 3px;
+}
+
+.students-link {
+  padding-top: 15px;
 }
 
 .true {

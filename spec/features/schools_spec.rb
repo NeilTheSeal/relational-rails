@@ -76,7 +76,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
     )
   end
 
-  describe "User story #1:" do
+  describe "User story #1 and #6:" do
     describe "When I visit /schools" do
       it "displays the name of each school in the system" do
         visit "/schools"
@@ -89,10 +89,18 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
           expect(page).to have_content("no")
         end
       end
+
+      it "displays the schools in order of creation" do
+        visit "/schools"
+
+        expect(@party.name).to appear_before(@cu.name)
+        expect(@cu.name).to appear_before(@mit.name)
+        expect(@mit.name).to appear_before(@harvard.name)
+      end
     end
   end
 
-  describe "User story #2:" do
+  describe "User story #2 and #7:" do
     describe "When I visit /schools/:id" do
       it "shows the school with that id and its attributes" do
         visit "/schools/#{@harvard.id}"
@@ -101,6 +109,14 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
           expect(page).to have_content("Harvard University")
           expect(page).to have_content("Cambridge, MA")
           expect(page).to_not have_content("Party University")
+        end
+      end
+
+      it "shows the number of students associated with the school" do
+        visit "/schools/#{@harvard.id}"
+
+        within "body" do
+          expect(page).to have_content("#{@harvard.name} has #{@harvard.students.count} students.")
         end
       end
     end
