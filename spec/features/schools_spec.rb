@@ -105,4 +105,18 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
       end
     end
   end
+
+  describe "User story #5:" do
+    describe "When I visit /schools/:school_id/students" do
+      it "shows the students that belong to that school" do
+        visit "/schools/#{@harvard.id}/students"
+
+        within "body" do
+          expect(page).to have_content("Aaron Aaronson")
+          expect(page).to have_content("19")
+          expect(page).to_not have_content("Henry Benry")
+        end
+      end
+    end
+  end
 end
