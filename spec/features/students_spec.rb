@@ -91,4 +91,19 @@ RSpec.describe "Students Web Pages", type: :feature do
       end
     end
   end
+
+  describe "User story #4:" do
+    describe "when I visit /students/:id" do
+      it "displays the student with that id" do
+        visit "/students/#{@evan.id}"
+
+        within "body" do
+          expect(page).to have_content("Evan Evanston")
+          expect(page).to have_content("22")
+          expect(page).to have_content("yes")
+          expect(page).to_not have_content("Aaron Aaronson")
+        end
+      end
+    end
+  end
 end
