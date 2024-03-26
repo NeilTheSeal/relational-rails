@@ -68,11 +68,40 @@ body {
 }
 
 .list-description {
-  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: left;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  gap: 50px;
+  margin-bottom: 15px;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
+}
+
+.list-description-text {
   text-decoration: underline;
+}
+
+.list-modify {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#create-school-link {
+  text-decoration: none;
+  color: black;
+  background-color: rgb(134, 185, 230);
+  padding: 8px 12px;
+  border: 1px solid rgba(80, 129, 217, 1);
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px 1px rgba(255, 255, 255, 0.5);
+}
+
+#create-school-link:hover {
+  background-color: rgb(166, 202, 234);
 }
 
 .list {
@@ -118,4 +147,68 @@ body {
 
 .value-color {
   color: darkblue;
+}
+
+.form-wrapper {
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px;
+  padding: 15px 5px;
+  background-color: rgba(185, 185, 185, 0.5);
+}
+
+.form-wrapper > * {
+  min-width: 400px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
+}
+
+.form-description {
+  padding: 8px 15px;
+  text-align: center;
+}
+
+.form-wrapper > form {
+  padding: 12px 15px;
+  display: grid;
+  gap: 10px;
+}
+
+.form-line-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-line-item > label {
+  justify-self: right;
+  padding-right: 15px;
+}
+
+.form-line-item > input {
+  justify-self: left;
+  width: 100%;
+}
+
+.form-line-item > input[type="checkbox"] {
+  width: max-content;
+}
+
+.form-line-submit {
+  margin: auto;
+  margin-top: 12px;
+}
+
+.form-line-submit > input[type="submit"] {
+  padding: 5px 8px;
+  font-size: 16px;
+  background-color: rgb(62, 209, 62);
+  border: 1px solid grey;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-line-submit > input[type="submit"]:hover {
+  background-color: rgb(83, 231, 83);
 }

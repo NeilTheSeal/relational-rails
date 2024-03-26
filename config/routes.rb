@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get "/", to: "index#index"
   get "/schools", to: "schools#index"
+  get "/schools/new", to: "schools#new"
+  post "/schools", to: "schools#create"
   get "/schools/:id", to: "schools#show"
   get "/schools/:id/students", to: "school_students#index"
   get "/students", to: "students#index"

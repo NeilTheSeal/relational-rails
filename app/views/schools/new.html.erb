@@ -1,0 +1,28 @@
+<div class="form-wrapper">
+  <div class="form-description">Create a new school using the form below:</div>
+  <form id="create-school-form" action="/schools" method="POST">
+    <div class="form-line-item">
+      <label for="school-name">Name of school</label>
+      <input type="text" id="school-name" name="school-name" />
+    </div>
+
+    <div class="form-line-item">
+      <label for="school-location">Location</label>
+      <input type="text" id="school-location" name="school-location" />
+    </div>
+
+    <div class="form-line-item boolean">
+      <label for="school-accredited">ABET accredited?</label>
+      <input type="checkbox" id="school-accredited" name="school-accredited" />
+    </div>
+
+    <div class="form-line-item">
+      <label for="school-capacity">Student capacity</label>
+      <input type="number" id="school-capacity" name="school-capacity" />
+    </div>
+
+    <div class="form-line-submit">
+      <input type="submit" value="create school" />
+    </div>
+  </form>
+</div>

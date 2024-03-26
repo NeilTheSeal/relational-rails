@@ -97,6 +97,13 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
         expect(@cu.name).to appear_before(@mit.name)
         expect(@mit.name).to appear_before(@harvard.name)
       end
+
+      it "has a link to add a new school" do
+        visit "/schools"
+
+        click_link("create-school-link")
+        expect(page).to have_current_path("/schools/new")
+      end
     end
   end
 
@@ -138,6 +145,24 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
           expect(page).to have_content("Aaron Aaronson")
           expect(page).to have_content("19")
           expect(page).to_not have_content("Henry Benry")
+        end
+      end
+    end
+  end
+
+  describe "User story #11:" do
+    describe "When I visit the school creation page" do
+      it "has a form for a new school record" do
+        visit "/schools/new"
+
+        within "body" do
+          expect(page).to have_element("div", class: "form-description")
+          expect(page).to have_element("form", id: "create-school-form")
+          expect(page).to have_element("input", id: "school-name")
+          expect(page).to have_element("input", id: "school-location")
+          expect(page).to have_element("input", id: "school-accredited")
+          expect(page).to have_element("input", id: "school-capacity")
+          expect(page).to have_element("input", type: "submit")
         end
       end
     end
