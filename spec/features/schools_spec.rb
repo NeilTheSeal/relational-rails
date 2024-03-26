@@ -137,7 +137,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
       it "has a link to update the school info" do
         visit "/schools/#{@harvard.id}"
 
-        click_link("update-schools-link")
+        click_link("update-school-link")
         expect(page).to have_current_path("/schools/#{@harvard.id}/edit")
       end
     end

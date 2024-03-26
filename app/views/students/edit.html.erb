@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+  <div class="form-description">Edit the information for <%= @student.name %> using the form below:</div>
+  <form id="edit-student-form" action="/students/<%= @student.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="form-line-item">
+      <label for="student-name">Name of student</label>
+      <input type="text" id="student-name" name="student-name" value="<%= @student.name %>" />
+    </div>
+
+    <div class="form-line-item">
+      <label for="student-age">Age</label>
+      <input type="text" id="student-age" name="student-age" value="<%= @student.age %>" />
+    </div>
+
+    <div class="form-line-item boolean">
+      <label for="student-enrolled">Currently enrolled?</label>
+      <input type="checkbox" id="student-enrolled" name="student-enrolled" checked=<%= @student.currently_enrolled %> />
+    </div>
+
+    <div class="form-line-item">
+      <label for="student-balance">Student account balance</label>
+      <input type="number" step=".01" id="student-balance" name="student-balance" value="<%= @student.account_balance %>" />
+    </div>
+
+    <div class="form-line-submit">
+      <input type="submit" value="update student" />
+    </div>
+  </form>
+</div>

@@ -92,7 +92,7 @@ RSpec.describe "Students Web Pages", type: :feature do
     end
   end
 
-  describe "User story #4:" do
+  describe "User story #4, #14:" do
     describe "when I visit /students/:id" do
       it "displays the student with that id" do
         visit "/students/#{@evan.id}"
@@ -103,6 +103,47 @@ RSpec.describe "Students Web Pages", type: :feature do
           expect(page).to have_content("yes")
           expect(page).to_not have_content("Aaron Aaronson")
         end
+      end
+
+      it "has a link to update the student info" do
+        visit "/students/#{@evan.id}"
+
+        click_link("update-student-link")
+        expect(page).to have_current_path("/students/#{@evan.id}/edit")
+      end
+    end
+
+    describe "When I visit students/:id/edit" do
+      it "has a form to edit a student record" do
+        visit "/students/#{@evan.id}/edit"
+
+        within "body" do
+          expect(page).to have_element("div", class: "form-description")
+          expect(page).to have_element("form", id: "edit-student-form")
+          expect(page).to have_element("input", id: "student-name")
+          expect(page).to have_element("input", id: "student-age")
+          expect(page).to have_element("input", id: "student-enrolled")
+          expect(page).to have_element("input", id: "student-balance")
+          expect(page).to have_element("input", type: "submit")
+        end
+      end
+
+      it "can update a student record" do
+        visit "/students/#{@evan.id}/edit"
+
+        fill_in("student-name", with: "Student 2")
+        fill_in("student-age", with: "55")
+        uncheck("student-enrolled")
+        fill_in("student-balance", with: "100")
+
+        find('input[type="submit"]').click
+
+        expect(page.current_path).to eq("/students/#{@evan.id}")
+
+        expect(page).to have_content("Student 2")
+        expect(page).to have_content("no")
+        expect(page).to have_content("55")
+        expect(page).to have_content("100")
       end
     end
   end
