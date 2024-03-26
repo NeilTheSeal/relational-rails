@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   get "/schools", to: "schools#index"
   get "/schools/new", to: "schools#new"
   post "/schools", to: "schools#create"
+  patch "/schools/:id", to: "schools#update"
   get "/schools/:id", to: "schools#show"
   get "/schools/:id/students", to: "school_students#index"
+  get "/schools/:id/edit", to: "schools#edit"
   get "/students", to: "students#index"
   get "/students/:id", to: "students#show"
 end

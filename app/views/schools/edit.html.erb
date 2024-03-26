@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+  <div class="form-description">Edit the information for <%= @school.name %> using the form below:</div>
+  <form id="edit-school-form" action="/schools/<%= @school.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="form-line-item">
+      <label for="school-name">Name of school</label>
+      <input type="text" id="school-name" name="school-name" value="<%= @school.name %>" />
+    </div>
+
+    <div class="form-line-item">
+      <label for="school-location">Location</label>
+      <input type="text" id="school-location" name="school-location" value="<%= @school.location %>" />
+    </div>
+
+    <div class="form-line-item boolean">
+      <label for="school-accredited">ABET accredited?</label>
+      <input type="checkbox" id="school-accredited" name="school-accredited" checked=<%= @school.abet_accredited %> />
+    </div>
+
+    <div class="form-line-item">
+      <label for="school-capacity">Student capacity</label>
+      <input type="number" id="school-capacity" name="school-capacity" value="<%= @school.student_capacity %>" />
+    </div>
+
+    <div class="form-line-submit">
+      <input type="submit" value="update school" />
+    </div>
+  </form>
+</div>

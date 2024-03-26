@@ -107,7 +107,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
     end
   end
 
-  describe "User story #2, #7, #10:" do
+  describe "User story #2, #7, #10, #12:" do
     describe "When I visit /schools/:id" do
       it "shows the school with that id and its attributes" do
         visit "/schools/#{@harvard.id}"
@@ -133,6 +133,47 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
         click_link("school-students-link")
         expect(page).to have_current_path("/schools/#{@harvard.id}/students")
       end
+
+      it "has a link to update the school info" do
+        visit "/schools/#{@harvard.id}"
+
+        click_link("update-schools-link")
+        expect(page).to have_current_path("/schools/#{@harvard.id}/edit")
+      end
+    end
+
+    describe "When I visit schools/:id/edit" do
+      it "has a form to edit a school record" do
+        visit "/schools/#{@harvard.id}/edit"
+
+        within "body" do
+          expect(page).to have_element("div", class: "form-description")
+          expect(page).to have_element("form", id: "edit-school-form")
+          expect(page).to have_element("input", id: "school-name")
+          expect(page).to have_element("input", id: "school-location")
+          expect(page).to have_element("input", id: "school-accredited")
+          expect(page).to have_element("input", id: "school-capacity")
+          expect(page).to have_element("input", type: "submit")
+        end
+      end
+
+      it "can update a school record" do
+        visit "/schools/#{@harvard.id}/edit"
+
+        fill_in("school-name", with: "Harvard 2")
+        fill_in("school-location", with: "Nowhereville")
+        uncheck("school-accredited")
+        fill_in("school-capacity", with: "100")
+
+        find('input[type="submit"]').click
+
+        expect(page.current_path).to eq("/schools/#{@harvard.id}")
+
+        expect(page).to have_content("Harvard 2")
+        expect(page).to have_content("no")
+        expect(page).to have_content("Nowhereville")
+        expect(page).to have_content("100")
+      end
     end
   end
 
@@ -150,7 +191,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
     end
   end
 
-  describe "User story #11:" do
+  describe "User story #11, #12:" do
     describe "When I visit the school creation page" do
       it "has a form for a new school record" do
         visit "/schools/new"
@@ -164,6 +205,23 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
           expect(page).to have_element("input", id: "school-capacity")
           expect(page).to have_element("input", type: "submit")
         end
+      end
+
+      it "can create a new school record" do
+        visit "/schools/new"
+
+        fill_in("school-name", with: "Harvard 2")
+        fill_in("school-location", with: "Nowhereville")
+        uncheck("school-accredited")
+        fill_in("school-capacity", with: "100")
+
+        find('input[type="submit"]').click
+
+        expect(page.current_path).to eq("/schools")
+
+        expect(page).to have_content("Harvard 2")
+        expect(page).to have_content("Nowhereville")
+        expect(page).to have_content("100")
       end
     end
   end
