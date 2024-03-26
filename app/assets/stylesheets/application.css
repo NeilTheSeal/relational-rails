@@ -81,7 +81,7 @@ body {
 }
 
 .list-description.two-column {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
 }
 
 .list-description.one-column {
@@ -98,7 +98,7 @@ body {
   font-weight: 400;
 }
 
-#create-school-link {
+.list-modify > a {
   text-decoration: none;
   color: black;
   background-color: rgb(134, 185, 230);
@@ -108,7 +108,7 @@ body {
   box-shadow: 0px 0px 2px 1px rgba(255, 255, 255, 0.5);
 }
 
-#create-school-link:hover {
+.list-modify > a:hover {
   background-color: rgb(166, 202, 234);
 }
 

@@ -1,6 +1,9 @@
 <div class="data-display">
-  <div class="list-description">
-    list of students at <%= @school.name %>
+  <div class="list-description two-column">
+    <div class="list-description-text">list of students at <%= @school.name %></div>
+    <div class="list-modify">
+      <a id="create-student-link" href="/schools/<%= @school.id %>/students/new">add student</a>
+    </div>
   </div>
 
   <div class="list">
