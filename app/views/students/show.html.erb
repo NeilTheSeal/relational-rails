@@ -9,6 +9,11 @@
       <div class="list-subitem">Currently enrolled: <span class=<%= @student.currently_enrolled ? "true" : "false" %>><%= @student.currently_enrolled ? "yes" : "no" %></span></div>
       <div class="list-subitem">Account balance: <span class="value-color">$<%= sprintf('%.2f', @student.account_balance) %></span></div>
       <a id="update-student-link" class="list-edit-btn" href="/students/<%= @student.id %>/edit">edit</a>
+      <form id="delete-student-form" action="/students/<%= @student.id %>" method="POST">
+        <%= hidden_field_tag(:authenticity_token, form_authenticity_token) %>
+        <input type="hidden" name="_method" value="DELETE">
+        <input id="delete-student-link" class="list-delete-btn" type="submit" value="delete">
+      </form>
     </div>
   </div>
 </div>

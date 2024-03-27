@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   delete "/schools/:id", to: "schools#destroy"
   get "/students", to: "students#index"
   get "/students/:id", to: "students#show"
-  # delete "/students/:id", to: "students#destroy"
+  delete "/students/:id", to: "students#destroy"
   patch "/students/:id", to: "students#update"
   get "/students/:id/edit", to: "students#edit"
 end

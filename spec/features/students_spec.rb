@@ -100,7 +100,7 @@ RSpec.describe "Students Web Pages", type: :feature do
     end
   end
 
-  describe "User story #4, #14:" do
+  describe "User story #4, #14, #20:" do
     describe "when I visit /students/:id" do
       it "displays the student with that id" do
         visit "/students/#{@evan.id}"
@@ -118,6 +118,21 @@ RSpec.describe "Students Web Pages", type: :feature do
 
         click_link("update-student-link")
         expect(page).to have_current_path("/students/#{@evan.id}/edit")
+      end
+
+      it "has a link to delete the student" do
+        visit "/students/#{@aaron.id}"
+
+        expect(page.has_css?("#delete-student-link")).to eq(true)
+      end
+
+      it "can delete the student" do
+        visit "/students/#{@aaron.id}"
+
+        find("#delete-student-link").click
+        expect(page.current_path).to eq("/students")
+
+        expect(page).to_not have_content("Aaron Aaronson")
       end
     end
 
