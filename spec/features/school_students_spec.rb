@@ -27,19 +27,30 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
       it "has a link to create a new student for that school" do
         visit "/schools/#{@harvard.id}/students"
 
-        click_link "add student"
+        click_link("add student")
         expect(page.current_path).to eq("/schools/#{@harvard.id}/students/new")
       end
 
       it "displays students in alphabetical order when link is clicked" do
         visit "/schools/#{@harvard.id}/students"
 
-        expect(page.has_css?("#sort-alphabetical")).to eq(true)
-        find("#sort-alphabetical").click
+        expect(page.has_link?("alphabetize")).to eq(true)
+        find_link("alphabetize").click
 
-        within "body" do
+        within ".list" do
           expect(@aaron.name).to appear_before(@bill.name)
         end
+      end
+
+      it "can filter students by age" do
+        visit "/schools/#{@harvard.id}/students"
+
+        fill_in("age", with: "20")
+        click_button("filter by age")
+        expect(page.current_path).to eq("/schools/#{@harvard.id}/students")
+
+        expect(page).to have_content("Aaron Aaronson")
+        expect(page).to_not have_content("Bill Bobberson")
       end
     end
 
@@ -47,12 +58,12 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
       it "can create a new student for that school" do
         visit "/schools/#{@harvard.id}/students/new"
 
-        fill_in("student-name", with: "Zed Zanders")
-        fill_in("student-age", with: "105")
-        fill_in("student-balance", with: "23.10")
-        check("student-enrolled")
+        fill_in("name", with: "Zed Zanders")
+        fill_in("age", with: "105")
+        fill_in("account_balance", with: "23.10")
+        check("currently_enrolled")
 
-        find('input[type="submit"]').click
+        find_button("add student").click
 
         expect(page.current_path).to eq("/schools/#{@harvard.id}/students")
 

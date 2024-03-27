@@ -81,7 +81,7 @@ RSpec.describe "Students Web Pages", type: :feature do
       it "displays each currently enrolled student in the system" do
         visit "/students"
 
-        within "body" do
+        within ".list" do
           expect(page).to have_content("Aaron Aaronson")
           expect(page).to have_content("19")
           expect(page).to have_content("$50.00")
@@ -93,21 +93,21 @@ RSpec.describe "Students Web Pages", type: :feature do
       it "has a link to edit each student" do
         visit "/students"
 
-        expect(page.has_css?("#edit-#{@aaron.id}")).to eq(true)
-        find("#edit-#{@aaron.id}").click
+        expect(page.has_link?("edit", id: "edit-#{@aaron.id}")).to eq(true)
+        find_link("edit", id: "edit-#{@aaron.id}").click
         expect(page.current_path).to eq("/students/#{@aaron.id}/edit")
       end
 
       it "has a link to delete a student" do
         visit "/students"
 
-        expect(page.has_css?("#delete-student-#{@aaron.id}-link")).to eq(true)
+        expect(page.has_button?("delete")).to eq(true)
       end
 
       it "can delete a student" do
         visit "/students"
 
-        find("#delete-student-#{@aaron.id}-link").click
+        find_button("delete", id: "delete-student-#{@aaron.id}-link").click
         expect(page.current_path).to eq("/students")
 
         expect(page).to_not have_content("Aaron Aaronson")
@@ -120,7 +120,7 @@ RSpec.describe "Students Web Pages", type: :feature do
       it "displays the student with that id" do
         visit "/students/#{@evan.id}"
 
-        within "body" do
+        within ".data-display" do
           expect(page).to have_content("Evan Evanston")
           expect(page).to have_content("22")
           expect(page).to have_content("yes")
@@ -138,13 +138,13 @@ RSpec.describe "Students Web Pages", type: :feature do
       it "has a link to delete the student" do
         visit "/students/#{@aaron.id}"
 
-        expect(page.has_css?("#delete-student-link")).to eq(true)
+        expect(page.has_button?("delete")).to eq(true)
       end
 
       it "can delete the student" do
         visit "/students/#{@aaron.id}"
 
-        find("#delete-student-link").click
+        find_button("delete").click
         expect(page.current_path).to eq("/students")
 
         expect(page).to_not have_content("Aaron Aaronson")
@@ -155,13 +155,13 @@ RSpec.describe "Students Web Pages", type: :feature do
       it "has a form to edit a student record" do
         visit "/students/#{@evan.id}/edit"
 
-        within "body" do
+        within ".form-wrapper" do
           expect(page).to have_element("div", class: "form-description")
           expect(page).to have_element("form", id: "edit-student-form")
-          expect(page).to have_element("input", id: "student-name")
-          expect(page).to have_element("input", id: "student-age")
-          expect(page).to have_element("input", id: "student-enrolled")
-          expect(page).to have_element("input", id: "student-balance")
+          expect(page).to have_element("input", id: "name")
+          expect(page).to have_element("input", id: "age")
+          expect(page).to have_element("input", id: "currently_enrolled")
+          expect(page).to have_element("input", id: "account_balance")
           expect(page).to have_element("input", type: "submit")
         end
       end
@@ -169,12 +169,12 @@ RSpec.describe "Students Web Pages", type: :feature do
       it "can update a student record" do
         visit "/students/#{@evan.id}/edit"
 
-        fill_in("student-name", with: "Student 2")
-        fill_in("student-age", with: "55")
-        uncheck("student-enrolled")
-        fill_in("student-balance", with: "100")
+        fill_in("name", with: "Student 2")
+        fill_in("age", with: "55")
+        uncheck("currently_enrolled")
+        fill_in("account_balance", with: "100")
 
-        find('input[type="submit"]').click
+        find_button("update").click
 
         expect(page.current_path).to eq("/students/#{@evan.id}")
 

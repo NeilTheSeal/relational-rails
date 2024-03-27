@@ -1,15 +1,15 @@
 class SchoolStudentsController < ApplicationController
   def index
     @school = School.find(params[:id])
-    @students = if params["student-age"].nil?
+    @students = if params[:age].nil?
                   @school.students
                 else
-                  @school.students.where("age >= #{params['student-age']}")
+                  @school.students.where("age >= #{params[:age]}")
                 end
 
     return unless params[:alphabetical] == "true"
 
-    @students = @students.order("name ASC")
+    @students = @students.alphabetical
   end
 
   def new
@@ -18,13 +18,12 @@ class SchoolStudentsController < ApplicationController
 
   def create
     @school = School.find(params[:id])
-    @school.students.create!(
-      name: params["student-name"],
-      age: params["student-age"],
-      account_balance: params["student-balance"],
-      currently_enrolled: params["student-enrolled"]
-    )
+    @school.students.create!(school_student_params)
 
     redirect_to("/schools/#{@school.id}/students")
+  end
+
+  def school_student_params
+    params.permit(:name, :age, :account_balance, :currently_enrolled)
   end
 end

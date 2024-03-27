@@ -10,12 +10,7 @@ class SchoolsController < ApplicationController
   def new; end
 
   def create
-    School.create!(
-      name: params["school-name"],
-      location: params["school-location"],
-      abet_accredited: params["school-accredited"],
-      student_capacity: params["school-capacity"]
-    )
+    School.create!(school_params)
 
     redirect_to("/schools")
   end
@@ -26,19 +21,25 @@ class SchoolsController < ApplicationController
 
   def update
     School.find(params[:id]).update(
-      name: params["school-name"],
-      location: params["school-location"],
-      abet_accredited: params["school-accredited"],
-      student_capacity: params["school-capacity"]
+      name: params[:name],
+      location: params[:location],
+      abet_accredited: params[:abet_accredited],
+      student_capacity: params[:student_capacity]
     )
 
     redirect_to("/schools/#{params[:id]}")
   end
 
   def destroy
-    Student.where(school_id: params[:id]).destroy_all
+    Student.where("school_id = ?", params[:id]).destroy_all
     School.find(params[:id]).destroy
 
     redirect_to("/schools")
+  end
+
+  private
+
+  def school_params
+    params.permit(:name, :location, :abet_accredited, :student_capacity)
   end
 end

@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.where(currently_enrolled: true)
+    @students = Student.enrolled
   end
 
   def show
@@ -13,10 +13,10 @@ class StudentsController < ApplicationController
 
   def update
     Student.find(params[:id]).update(
-      name: params["student-name"],
-      age: params["student-age"],
-      currently_enrolled: params["student-enrolled"],
-      account_balance: params["student-balance"]
+      name: params[:name],
+      age: params[:age],
+      currently_enrolled: params[:currently_enrolled],
+      account_balance: params[:account_balance]
     )
 
     redirect_to("/students/#{params[:id]}")
