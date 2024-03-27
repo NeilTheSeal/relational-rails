@@ -89,6 +89,14 @@ RSpec.describe "Students Web Pages", type: :feature do
           expect(page).to_not have_content("no")
         end
       end
+
+      it "has a link to edit each student" do
+        visit "/students"
+
+        expect(page.has_css?("#edit-#{@aaron.id}")).to eq(true)
+        find("#edit-#{@aaron.id}").click
+        expect(page.current_path).to eq("/students/#{@aaron.id}/edit")
+      end
     end
   end
 

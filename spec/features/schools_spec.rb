@@ -76,7 +76,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
     )
   end
 
-  describe "User story #1 and #6:" do
+  describe "User story #1, #6, #17:" do
     describe "When I visit /schools" do
       it "displays the name of each school in the system" do
         visit "/schools"
