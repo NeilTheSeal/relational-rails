@@ -1,11 +1,15 @@
 class SchoolStudentsController < ApplicationController
   def index
     @school = School.find(params[:id])
-    @students = if params[:alphabetical] == "true"
-                  @school.students.order("name ASC")
-                else
+    @students = if params["student-age"].nil?
                   @school.students
+                else
+                  @school.students.where("age >= #{params['student-age']}")
                 end
+
+    return unless params[:alphabetical] == "true"
+
+    @students = @students.order("name ASC")
   end
 
   def new

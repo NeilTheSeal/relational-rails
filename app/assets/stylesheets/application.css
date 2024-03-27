@@ -289,3 +289,17 @@ body {
   margin: auto;
   margin-bottom: 15px;
 }
+
+.filter-form-wrapper {
+  display: grid;
+  justify-content: center;
+  background-color: rgba(30, 180, 255, 0.3);
+  padding: 20px;
+  border: 1px solid black;
+  justify-self: center;
+  max-width: 760px;
+}
+
+.filter-form-wrapper > form {
+  display: grid;
+}
