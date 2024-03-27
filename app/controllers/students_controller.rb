@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.all
+    @students = Student.where(currently_enrolled: true)
   end
 
   def show

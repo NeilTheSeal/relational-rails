@@ -26,16 +26,22 @@ RSpec.describe "Students Web Pages", type: :feature do
       abet_accredited: false,
       student_capacity: 100_000
     )
+    @bill = @harvard.students.create!(
+      name: "Bill Bobberson",
+      age: 19,
+      account_balance: -200,
+      currently_enrolled: true
+    )
     @aaron = @harvard.students.create!(
       name: "Aaron Aaronson",
       age: 21,
       account_balance: 0,
       currently_enrolled: true
     )
-    @bill = @harvard.students.create!(
-      name: "Bill Bobberson",
-      age: 19,
-      account_balance: -200,
+    @dan = @mit.students.create!(
+      name: "Daniel O'Daniel",
+      age: 35,
+      account_balance: 25_000,
       currently_enrolled: true
     )
     @chase = @mit.students.create!(
@@ -44,10 +50,10 @@ RSpec.describe "Students Web Pages", type: :feature do
       account_balance: 0,
       currently_enrolled: false
     )
-    @dan = @mit.students.create!(
-      name: "Daniel O'Daniel",
-      age: 35,
-      account_balance: 25_000,
+    @frodo = @cu.students.create!(
+      name: "Frodo Baggins",
+      age: 50,
+      account_balance: 200_000,
       currently_enrolled: true
     )
     @evan = @cu.students.create!(
@@ -56,10 +62,10 @@ RSpec.describe "Students Web Pages", type: :feature do
       account_balance: -2000,
       currently_enrolled: true
     )
-    @frodo = @cu.students.create!(
-      name: "Frodo Baggins",
-      age: 50,
-      account_balance: 200_000,
+    @henry = @party.students.create!(
+      name: "Henry Benry",
+      age: 18,
+      account_balance: 50,
       currently_enrolled: true
     )
     @gilbert = @party.students.create!(
@@ -68,17 +74,11 @@ RSpec.describe "Students Web Pages", type: :feature do
       account_balance: 0,
       currently_enrolled: false
     )
-    @henry = @party.students.create!(
-      name: "Henry Benry",
-      age: 18,
-      account_balance: 50,
-      currently_enrolled: true
-    )
   end
 
-  describe "User story #3:" do
+  describe "User story #3, #15:" do
     describe "When I visit /students" do
-      it "displays each student in the system" do
+      it "displays each currently enrolled student in the system" do
         visit "/students"
 
         within "body" do
@@ -86,7 +86,7 @@ RSpec.describe "Students Web Pages", type: :feature do
           expect(page).to have_content("19")
           expect(page).to have_content("$50.00")
           expect(page).to have_content("yes")
-          expect(page).to have_content("no")
+          expect(page).to_not have_content("no")
         end
       end
     end

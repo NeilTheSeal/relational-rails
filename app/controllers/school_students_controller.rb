@@ -1,7 +1,11 @@
 class SchoolStudentsController < ApplicationController
   def index
     @school = School.find(params[:id])
-    @students = @school.students
+    @students = if params[:alphabetical] == "true"
+                  @school.students.order("name ASC")
+                else
+                  @school.students
+                end
   end
 
   def new

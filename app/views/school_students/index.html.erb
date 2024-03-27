@@ -1,8 +1,11 @@
 <div class="data-display">
-  <div class="list-description two-column">
+  <div class="list-description three-column">
     <div class="list-description-text">list of students at <%= @school.name %></div>
     <div class="list-modify">
       <a id="create-student-link" href="/schools/<%= @school.id %>/students/new">add student</a>
+    </div>
+    <div class="list-modify">
+      <a id="sort-alphabetical" href="/schools/<%= @school.id %>/students?alphabetical=true">alphabetize</a>
     </div>
   </div>
 
