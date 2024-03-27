@@ -23,6 +23,8 @@ class SchoolStudentsController < ApplicationController
     redirect_to("/schools/#{@school.id}/students")
   end
 
+  private
+
   def school_student_params
     params.permit(:name, :age, :account_balance, :currently_enrolled)
   end

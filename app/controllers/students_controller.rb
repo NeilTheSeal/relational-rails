@@ -12,6 +12,11 @@ class StudentsController < ApplicationController
   end
 
   def update
+    # For some reason, strong params doesn't work here
+    # It does not updated :currently_enrolled using strong params
+    # but does with the syntax below. I think it has something
+    # to do with using a checkbox...
+
     Student.find(params[:id]).update(
       name: params[:name],
       age: params[:age],
