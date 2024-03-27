@@ -104,6 +104,14 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
         click_link("create-school-link")
         expect(page).to have_current_path("/schools/new")
       end
+
+      it "has a link to edit a school" do
+        visit "/schools"
+
+        expect(page.has_css?("#edit-#{@harvard.id}")).to eq(true)
+        find("#edit-#{@harvard.id}").click
+        expect(page.current_path).to eq("/schools/#{@harvard.id}/edit")
+      end
     end
   end
 

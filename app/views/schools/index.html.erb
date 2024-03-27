@@ -15,6 +15,7 @@
         <div class="list-subitem">ABET accredited: <span class=<%= school.abet_accredited ? "true" : "false" %>><%= school.abet_accredited ? "yes" : "no" %></span></div>
         <div class="list-subitem">Student capacity: <span class="value-color"><%= school.student_capacity %></span></div>
         <div class="list-subitem">Record created at: <span class="value-color"><%= school.created_at.strftime("%m/%d/%Y %T.%6N UTC") %></span></div>
+        <a class="list-edit-btn" id="edit-<%= school.id %>" href="/schools/<%= school.id %>/edit">edit</a>
       </div>
     <% end %>
   </div>
