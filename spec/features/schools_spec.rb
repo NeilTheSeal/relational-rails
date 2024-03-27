@@ -119,7 +119,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
         expect(page.has_css?("#delete-school-#{@harvard.id}-link")).to eq(true)
       end
 
-      it "can delete the school" do
+      it "can delete a school" do
         visit "/schools"
 
         find("#delete-school-#{@harvard.id}-link").click

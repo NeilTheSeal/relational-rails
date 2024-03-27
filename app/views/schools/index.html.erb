@@ -16,7 +16,7 @@
         <div class="list-subitem">Student capacity: <span class="value-color"><%= school.student_capacity %></span></div>
         <div class="list-subitem">Record created at: <span class="value-color"><%= school.created_at.strftime("%m/%d/%Y %T.%6N UTC") %></span></div>
         <a class="list-edit-btn" id="edit-<%= school.id %>" href="/schools/<%= school.id %>/edit">edit</a>
-        <form id="delete-school-form" action="/schools/<%= school.id %>" method="POST">
+        <form id="delete-school-<%= school.id %>-form" action="/schools/<%= school.id %>" method="POST">
           <%= hidden_field_tag(:authenticity_token, form_authenticity_token) %>
           <input type="hidden" name="_method" value="DELETE">
           <input id="delete-school-<%= school.id %>-link" class="list-delete-btn" type="submit" value="delete">

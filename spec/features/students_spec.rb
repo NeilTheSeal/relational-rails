@@ -97,6 +97,21 @@ RSpec.describe "Students Web Pages", type: :feature do
         find("#edit-#{@aaron.id}").click
         expect(page.current_path).to eq("/students/#{@aaron.id}/edit")
       end
+
+      it "has a link to delete a student" do
+        visit "/students"
+
+        expect(page.has_css?("#delete-student-#{@aaron.id}-link")).to eq(true)
+      end
+
+      it "can delete a student" do
+        visit "/students"
+
+        find("#delete-student-#{@aaron.id}-link").click
+        expect(page.current_path).to eq("/students")
+
+        expect(page).to_not have_content("Aaron Aaronson")
+      end
     end
   end
 
