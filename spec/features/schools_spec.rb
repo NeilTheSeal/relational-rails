@@ -112,6 +112,21 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
         find("#edit-#{@harvard.id}").click
         expect(page.current_path).to eq("/schools/#{@harvard.id}/edit")
       end
+
+      it "has a link to delete a school" do
+        visit "/schools"
+
+        expect(page.has_css?("#delete-school-#{@harvard.id}-link")).to eq(true)
+      end
+
+      it "can delete the school" do
+        visit "/schools"
+
+        find("#delete-school-#{@harvard.id}-link").click
+        expect(page.current_path).to eq("/schools")
+
+        expect(page).to_not have_content("Harvard University")
+      end
     end
   end
 
