@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   post "/schools/:id", to: "school_students#create"
   get "/schools/:id/students/new", to: "school_students#new"
   get "/schools/:id/edit", to: "schools#edit"
+  delete "/schools/:id", to: "schools#destroy"
   get "/students", to: "students#index"
   get "/students/:id", to: "students#show"
+  # delete "/students/:id", to: "students#destroy"
   patch "/students/:id", to: "students#update"
   get "/students/:id/edit", to: "students#edit"
 end

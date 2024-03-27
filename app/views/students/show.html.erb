@@ -3,19 +3,12 @@
     more information about <%= @student.name %>
   </div>
 
-
-
-  <div class="list-wrapper">
-    <div class="list">
-      <div class="list-item">
-        <div class="list-subitem">Age: <span class="value-color"><%= @student.age %></span></div>
-        <div class="list-subitem">Currently enrolled: <span class=<%= @student.currently_enrolled ? "true" : "false" %>><%= @student.currently_enrolled ? "yes" : "no" %></span></div>
-        <div class="list-subitem">Account balance: <span class="value-color">$<%= sprintf('%.2f', @student.account_balance) %></span></div>
-      </div>
-    </div>
-
-    <div class="btn-wrapper">
-      <a id="update-student-link" href="/students/<%= @student.id %>/edit">update info</a>
+  <div class="list">
+    <div class="list-item">
+      <div class="list-subitem">Age: <span class="value-color"><%= @student.age %></span></div>
+      <div class="list-subitem">Currently enrolled: <span class=<%= @student.currently_enrolled ? "true" : "false" %>><%= @student.currently_enrolled ? "yes" : "no" %></span></div>
+      <div class="list-subitem">Account balance: <span class="value-color">$<%= sprintf('%.2f', @student.account_balance) %></span></div>
+      <a id="update-student-link" class="list-edit-btn" href="/students/<%= @student.id %>/edit">edit</a>
     </div>
   </div>
 </div>

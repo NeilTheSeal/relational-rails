@@ -115,7 +115,7 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
     end
   end
 
-  describe "User story #2, #7, #10, #12:" do
+  describe "User story #2, #7, #10, #12, #19:" do
     describe "When I visit /schools/:id" do
       it "shows the school with that id and its attributes" do
         visit "/schools/#{@harvard.id}"
@@ -147,6 +147,21 @@ RSpec.describe "Schools Web Pages", type: :feature do # rubocop:disable Metrics/
 
         click_link("update-school-link")
         expect(page).to have_current_path("/schools/#{@harvard.id}/edit")
+      end
+
+      it "has a link to delete the school" do
+        visit "/schools/#{@harvard.id}"
+
+        expect(page.has_css?("#delete-school-link")).to eq(true)
+      end
+
+      it "can delete the school" do
+        visit "/schools/#{@harvard.id}"
+
+        find("#delete-school-link").click
+        expect(page.current_path).to eq("/schools")
+
+        expect(page).to_not have_content("Harvard University")
       end
     end
 

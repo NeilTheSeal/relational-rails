@@ -126,7 +126,6 @@ body {
 
 .list-wrapper {
   display: grid;
-  grid-template-columns: 2fr 1fr;
   align-items: center;
   gap: 10px;
   margin-left: 10px;
@@ -161,21 +160,32 @@ body {
   position: relative;
 }
 
-.list-edit-btn {
+.list-edit-btn, .list-delete-btn {
   position: absolute;
-  right: 40px;
-  top: 50%;
+  right: 60px;
+  min-width: 45px;
+  text-align: center;
   text-decoration: none;
   color: black;
   background-color: white;
   padding: 5px 12px;
   border: 1px solid black;
   border-radius: 5px;
-  transform: translateY(-50%);
+  transform: translatex(50%);
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.list-edit-btn:hover {
+.list-edit-btn {
+  top: 20px;
+}
+
+.list-delete-btn {
+  bottom: 20px;
+}
+
+.list-edit-btn:hover, .list-delete-btn:hover {
   background-color: lightyellow;
 }
 

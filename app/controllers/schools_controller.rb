@@ -34,4 +34,11 @@ class SchoolsController < ApplicationController
 
     redirect_to("/schools/#{params[:id]}")
   end
+
+  def destroy
+    Student.where(school_id: params[:id]).destroy_all
+    School.find(params[:id]).destroy
+
+    redirect_to("/schools")
+  end
 end
