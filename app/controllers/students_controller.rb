@@ -17,12 +17,7 @@ class StudentsController < ApplicationController
     # but does with the syntax below. I think it has something
     # to do with using a checkbox...
 
-    Student.find(params[:id]).update(
-      name: params[:name],
-      age: params[:age],
-      currently_enrolled: params[:currently_enrolled],
-      account_balance: params[:account_balance]
-    )
+    Student.find(params[:id]).update(student_params)
 
     redirect_to("/students/#{params[:id]}")
   end
@@ -31,5 +26,11 @@ class StudentsController < ApplicationController
     Student.find(params[:id]).destroy
 
     redirect_to("/students")
+  end
+
+  private
+
+  def student_params
+    params.permit(:name, :age, :currently_enrolled, :account_balance)
   end
 end
